@@ -1,38 +1,28 @@
 plugins {
-    // id for library
-    // id for maven to publish jar to local repository
-}
-
-java {
-// provide sourceCompatibility
-}
-
-repositories {
-// provide repository, where required dependencies are located
+    id 'java-library'
 }
 
 publishing {
     publications {
         maven(MavenPublication) {
-// provide groupId
-// provide artifactId
-// provide version
-
+            groupId = 'com.mjc-school.stage2-module1-build-tools-gradle'
+            artifactId = 'utils'
+            version = '1.3.5'
             from components.java
         }
     }
 }
 
-//add Apache Apache Commons Lang 3.10 (or higher) dependency
+dependencies {
+    implementation 'org.apache.commons:commons-lang3:3.18.0'
+}
 
 jar {
     manifest {
-        //provide manifest with such attributes as 'Implementation-Title', 'Implementation-Version'
+        attributes('Implementation-Title': 'Utils',
+                'Implementation-Version': '1.3.5'
+        )
     }
-}
-
-test {
-    useJUnitPlatform()
 }
 
 publishMavenPublicationToMavenLocal {}.mustRunAfter('build')

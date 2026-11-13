@@ -1,11 +1,18 @@
-repositories {
-    mavenCentral()
-}
-
+/*
+group = 'com.mjc-school'
+version = '1.0-SNAPSHOT'
+*/
+allprojects {}
 subprojects {
     apply plugin: 'java'
+    apply plugin: 'maven-publish'
 
-    dependencies {
-        testImplementation('org.junit.jupiter:junit-jupiter:5.8.1')
+    repositories {
+        mavenCentral()
+        mavenLocal()
     }
+
+    java { toolchain { languageVersion = JavaLanguageVersion.of(11) } }
+
+    testing { suites { test { useJUnitJupiter('5.9.1') } } }
 }
